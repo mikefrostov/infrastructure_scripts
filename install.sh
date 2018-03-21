@@ -92,5 +92,15 @@ systemctl start vsftpd
 systemctl enable dnsmasq
 systemctl enable vsftpd
 
+#handling firewall rules
+firewall-cmd --add-service=ftp --permanent
+firewall-cmd --add-service=dns --permanent  	## Port 53
+firewall-cmd --add-service=dhcp --permanent  	## Port 67
+firewall-cmd --add-port=69/udp --permanent  	## Port for TFTP
+firewall-cmd --add-port=4011/udp --permanent  ## Port for ProxyDHCP
+firewall-cmd --reload  ## Apply rules
+umount /mnt
+
+
 
 
