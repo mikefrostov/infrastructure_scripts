@@ -9,25 +9,24 @@ mv /etc/dnsmasq.conf  /etc/dnsmasq.conf.backup
 
 #generate dnsmasq.conf 
 
-echo "interface=$ownif" >> /etc/dnsmasq1.conf
-echo "#bind-interfaces" >> /etc/dnsmasq1.conf
-echo "domain=pxe.lan" >> /etc/dnsmasq1.conf
-echo "# DHCP range-leases" >> /etc/dnsmasq1.conf
-echo "dhcp-range= $ownif, 192.168.1.200,192.168.1.240,255.255.255.0,1h" >> /etc/dnsmasq1.conf ## change pool into generated 
-echo "# PXE" >> /etc/dnsmasq1.conf 
-echo "dhcp-boot=pxelinux.0,pxeserver,$ownip" >> /etc/dnsmasq1.conf
-echo "# Gateway" >> /etc/dnsmasq1.conf
-echo "dhcp-option=3,$GW" >> /etc/dnsmasq1.conf
-echo "pxe-service=x86PC, "Install from network server 192.168.1.94", pxelinux" >> /etc/dnsmasq1.conf
-echo "enable-tftp" >> /etc/dnsmasq1.conf
-echo "tftp-root=/var/lib/tftpboot" >> /etc/dnsmasq1.conf 
+echo "interface=$ownif" >> /etc/dnsmasq.conf
+echo "#bind-interfaces" >> /etc/dnsmasq.conf
+echo "domain=pxe.lan" >> /etc/dnsmasq.conf
+echo "# DHCP range-leases" >> /etc/dnsmasq.conf
+echo "dhcp-range= $ownif, 192.168.1.200,192.168.1.240,255.255.255.0,1h" >> /etc/dnsmasq.conf ## change pool into generated 
+echo "# PXE" >> /etc/dnsmasq.conf 
+echo "dhcp-boot=pxelinux.0,pxeserver,$ownip" >> /etc/dnsmasq.conf
+echo "# Gateway" >> /etc/dnsmasq.conf
+echo "dhcp-option=3,$GW" >> /etc/dnsmasq.conf
+echo "pxe-service=x86PC, "Install from network server 192.168.1.94", pxelinux" >> /etc/dnsmasq.conf
+echo "enable-tftp" >> /etc/dnsmasq.conf
+echo "tftp-root=/var/lib/tftpboot" >> /etc/dnsmasq.conf 
 
 
 yum install syslinux -y
 yum install tftp-server -y 
 cp -r /usr/share/syslinux/* /var/lib/tftpboot
 mkdir /var/lib/tftpboot/pxelinux.cfg
-cp ./default /var/lib/tftpboot/pxelinux.cfg/default
 
 
 echo "default menu.c32 \
@@ -41,7 +40,7 @@ localboot 0 \
 label 2 \
 menu label ^2) Install CentOS 7 x64 with Local Repo \
 kernel centos7/vmlinuz \
-append initrd=centos7/initrd.img method=ftp://$ownip/pub/centos7/ devfs=nomount" >> ./default1
+append initrd=centos7/initrd.img method=ftp://$ownip/pub/centos7/ devfs=nomount" >> /var/lib/tftpboot/pxelinux.cfg/default
 echo "label 3 \
 menu label ^3) Install CentOS 7 x64 with http://mirror.centos.org Repo \
 kernel centos7/vmlinuz \
@@ -77,8 +76,21 @@ label 10 \
 menu label ^10) Install Windows 10 x64 1607 \
 KERNEL memdisk \
 INITRD windows/Win101607PE_amd64.iso \
-APPEND iso raw" >> ./default
+APPEND iso raw" >> /var/lib/tftpboot/pxelinux.cfg/default
+yum install wget -y 
 
+wget http://mirror.corbina.net/pub/Linux/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1708.iso 
+mount -o loop ./CentOS-7-x86_64-Minimal-1708.iso /mnt/
+mkdir /var/lib/tftpboot/centos7
+cp /mnt/images/pxeboot/vmlinuz  /var/lib/tftpboot/centos7/
+cp /mnt/images/pxeboot/initrd.img  /var/lib/tftpboot/centos7/
+yum install vsftpd -y
+cp -r /mnt/*  /var/ftp/pub/centos7/
+chmod -R 755 /var/ftp/pub/centos7/
+systemctl start dnsmasq
+systemctl start vsftpd
+systemctl enable dnsmasq
+systemctl enable vsftpd
 
 
 
