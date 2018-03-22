@@ -1,4 +1,6 @@
 #!/bin/bash
+## need to implement checks that it is Centos 7 distro indeed
+
 #1) dnsmasq installation and configuration
 yum install dnsmasq -y 
 ownip=$(hostname -I)
