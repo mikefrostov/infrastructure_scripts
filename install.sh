@@ -2,31 +2,31 @@
 ## need to implement checks that it is Centos 7 distro indeed
 
 #1) dnsmasq installation and configuration
-yum install dnsmasq -y 
+yum install dnsmasq net-tools -y 
 ownip=$(hostname -I)
 ownif=$(route | grep '^default' | grep -o '[^ ]*$')
 GW=$(/sbin/ip route | awk '/default/ { print $3 }')
 
 mv /etc/dnsmasq.conf  /etc/dnsmasq.conf.backup
 
-#generate dnsmasq.conf 
+#generate dnsmasq.conf
 
 echo "interface=$ownif" >> /etc/dnsmasq.conf
 echo "#bind-interfaces" >> /etc/dnsmasq.conf
 echo "domain=pxe.lan" >> /etc/dnsmasq.conf
 echo "# DHCP range-leases" >> /etc/dnsmasq.conf
-echo "dhcp-range= $ownif, 192.168.1.200,192.168.1.240,255.255.255.0,1h" >> /etc/dnsmasq.conf ## change pool into generated 
-echo "# PXE" >> /etc/dnsmasq.conf 
+echo "dhcp-range= $ownif, 192.168.1.200,192.168.1.240,255.255.255.0,1h" >> /etc/dnsmasq.conf ## change pool into generated
+echo "# PXE" >> /etc/dnsmasq.conf
 echo "dhcp-boot=pxelinux.0,pxeserver,$ownip" >> /etc/dnsmasq.conf
 echo "# Gateway" >> /etc/dnsmasq.conf
 echo "dhcp-option=3,$GW" >> /etc/dnsmasq.conf
 echo "pxe-service=x86PC, "Install from network server 192.168.1.94", pxelinux" >> /etc/dnsmasq.conf
 echo "enable-tftp" >> /etc/dnsmasq.conf
-echo "tftp-root=/var/lib/tftpboot" >> /etc/dnsmasq.conf 
+echo "tftp-root=/var/lib/tftpboot" >> /etc/dnsmasq.conf
 
 
 yum install syslinux -y
-yum install tftp-server -y 
+yum install tftp-server -y
 cp -r /usr/share/syslinux/* /var/lib/tftpboot
 mkdir /var/lib/tftpboot/pxelinux.cfg
 
@@ -79,9 +79,9 @@ menu label ^10) Install Windows 10 x64 1607 \
 KERNEL memdisk \
 INITRD windows/Win101607PE_amd64.iso \
 APPEND iso raw" >> /var/lib/tftpboot/pxelinux.cfg/default
-yum install wget -y 
+yum install wget -y
 
-wget http://mirror.corbina.net/pub/Linux/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1708.iso 
+wget http://mirror.corbina.net/pub/Linux/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1708.iso
 mount -o loop ./CentOS-7-x86_64-Minimal-1708.iso /mnt/
 mkdir /var/lib/tftpboot/centos7
 cp /mnt/images/pxeboot/vmlinuz  /var/lib/tftpboot/centos7/
@@ -102,7 +102,3 @@ firewall-cmd --add-port=69/udp --permanent  	## Port for TFTP
 firewall-cmd --add-port=4011/udp --permanent  ## Port for ProxyDHCP
 firewall-cmd --reload  ## Apply rules
 umount /mnt
-
-
-
-
