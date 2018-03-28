@@ -2,7 +2,7 @@
 ## need to implement checks that it is Centos 7 distro indeed
 
 #1) dnsmasq installation and configuration
-yum install dnsmasq net-tools -y 
+yum install dnsmasq net-tools -y
 ownip=$(hostname -I)
 ownif=$(route | grep '^default' | grep -o '[^ ]*$')
 GW=$(/sbin/ip route | awk '/default/ { print $3 }')
@@ -83,7 +83,8 @@ yum install wget -y
 
 wget http://mirror.corbina.net/pub/Linux/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1708.iso
 mount -o loop ./CentOS-7-x86_64-Minimal-1708.iso /mnt/
-mkdir /var/lib/tftpboot/centos7
+mkdir -p /var/lib/tftpboot/centos7
+mkdir -p /var/ftp/pub/centos7/
 cp /mnt/images/pxeboot/vmlinuz  /var/lib/tftpboot/centos7/
 cp /mnt/images/pxeboot/initrd.img  /var/lib/tftpboot/centos7/
 yum install vsftpd -y
