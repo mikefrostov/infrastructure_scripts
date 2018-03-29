@@ -20,7 +20,7 @@ echo "# PXE" >> /etc/dnsmasq.conf
 echo "dhcp-boot=pxelinux.0,pxeserver,$ownip" >> /etc/dnsmasq.conf
 echo "# Gateway" >> /etc/dnsmasq.conf
 echo "dhcp-option=3,$GW" >> /etc/dnsmasq.conf
-echo "pxe-service=x86PC, "Install from network server 192.168.1.94", pxelinux" >> /etc/dnsmasq.conf
+echo "pxe-service=x86PC, "Install from network server", pxelinux" >> /etc/dnsmasq.conf
 echo "enable-tftp" >> /etc/dnsmasq.conf
 echo "tftp-root=/var/lib/tftpboot" >> /etc/dnsmasq.conf
 
@@ -76,7 +76,7 @@ INITRD windows/win7pe_x86.iso
 APPEND iso raw
 label 10
 menu label ^10) Install Windows 10 x64 1607
-KERNEL memdisk 
+KERNEL memdisk
 INITRD windows/Win101607PE_amd64.iso
 APPEND iso raw" >> /var/lib/tftpboot/pxelinux.cfg/default
 yum install wget -y
@@ -102,4 +102,6 @@ firewall-cmd --add-service=dhcp --permanent  	## Port 67
 firewall-cmd --add-port=69/udp --permanent  	## Port for TFTP
 firewall-cmd --add-port=4011/udp --permanent  ## Port for ProxyDHCP
 firewall-cmd --reload  ## Apply rules
+firewall-cmd --zone=public --add-service=vnc-server
+firewall-cmd --zone=public --list-services
 umount /mnt
