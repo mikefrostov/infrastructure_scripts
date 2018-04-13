@@ -1,0 +1,18 @@
+vi /etc/httpd/conf.d/default-site.conf
+
+<VirtualHost *:80>
+    ProxyPreserveHost On
+
+    ProxyPass / http://127.0.0.1:8080/
+    ProxyPassReverse / http://127.0.0.1:8080/
+</VirtualHost>
+
+
+ProxyPreserveHost makes Apache pass the original Host header to the backend server. This is useful, as it makes the backend server aware of the address used to access the application.
+
+
+ProxyPass is the main proxy configuration directive. In this case, it specifies that everything under the root URL (/) should be mapped to the backend server at the given address. For example, if Apache gets a request for /example, it will connect to http://your_backend_server/example and return the response to the original client.
+
+ProxyPassReverse should have the same configuration as ProxyPass. It tells Apache to modify the response headers from backend server. This makes sure that if the backend server returns a location redirect header, the client's browser will be redirected to the proxy address and not the backend server address, which would not work as intended.
+
+

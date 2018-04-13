@@ -105,3 +105,9 @@ firewall-cmd --reload  ## Apply rules
 firewall-cmd --zone=public --add-service=vnc-server
 firewall-cmd --zone=public --list-services
 umount /mnt
+
+# downloading winPE files to their folders
+
+mkdir -p /var/lib/tftpboot/windows/
+cd /var/lib/tftpboot/windows/
+
