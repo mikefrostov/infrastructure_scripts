@@ -18,3 +18,5 @@ systemctl restart network
 ##check and verify that no errors, continue
 firewall-cmd --permanent --zone=public --add-service vnc-server
 systemctl restart firewalld
+reboot
+
