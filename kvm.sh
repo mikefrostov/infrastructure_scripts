@@ -1,4 +1,6 @@
 #!/bin/bash
+yum install epel-release -y
+yum install wget curl git net-tools -y
 yum install qemu-kvm libvirt libvirt-python libguestfs-tools virt-install -y
 systemctl enable libvirtd
 systemctl start libvirtd
