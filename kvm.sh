@@ -14,7 +14,7 @@ IPV6INIT="yes"
 IPV6_AUTOCONF="yes"
 ONBOOT="yes"
 TYPE="Bridge"
-DELAY="0" ' >> /etc/sysconfig/network-scripts/ifcfg-br0
+DELAY="0" ' > /etc/sysconfig/network-scripts/ifcfg-br0
 systemctl restart NetworkManager 
 systemctl restart network 
 ##check and verify that no errors, continue
