@@ -1,3 +1,5 @@
+#!/bin/bash
+set -e
 #The Kubernetes package provides a few services:
 # kube-apiserver,
 # kube-scheduler,
