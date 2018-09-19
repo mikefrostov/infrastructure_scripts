@@ -20,8 +20,12 @@ echo "192.168.1.90 kubernetes.vm" >> /etc/hosts
 echo "192.168.1.91 kubernetes2.vm" >> /etc/hosts
 echo "192.168.1.92 kubernetes3.vm" >> /etc/hosts
 
-systemctl disable iptables-services firewalld
-systemctl stop iptables-services firewalld
+echo "hosts file"
+
+systemctl disable firewalld
+systemctl stop firewalld
+
+echo "disable"
 
 cat <<EOF > /etc/yum.repos.d/kubernetes.repo
 [kubernetes]
@@ -41,4 +45,4 @@ net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
 EOF
 sysctl --system
-
+swapoff -a
