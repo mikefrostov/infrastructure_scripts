@@ -1,5 +1,7 @@
 #!/bin/bash
 ## need to implement checks that it is Centos 7 distro indeed
+set -e
+
 
 #1) dnsmasq installation and configuration
 yum install dnsmasq net-tools -y
@@ -80,9 +82,9 @@ KERNEL memdisk
 INITRD windows/Win101607PE_amd64.iso
 APPEND iso raw" >> /var/lib/tftpboot/pxelinux.cfg/default
 yum install wget -y
-
-wget http://mirror.corbina.net/pub/Linux/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1708.iso
-mount -o loop ./CentOS-7-x86_64-Minimal-1708.iso /mnt/
+cd 
+wget http://mirror.yandex.ru/centos/7.6.1810/isos/x86_64/CentOS-7-x86_64-Minimal-1810.iso
+mount -o loop ./CentOS-7-x86_64-Minimal-1810.iso /mnt/
 mkdir -p /var/lib/tftpboot/centos7
 mkdir -p /var/ftp/pub/centos7/
 cp /mnt/images/pxeboot/vmlinuz  /var/lib/tftpboot/centos7/
@@ -108,6 +110,6 @@ umount /mnt
 
 # downloading winPE files to their folders
 
-mkdir -p /var/lib/tftpboot/windows/
-cd /var/lib/tftpboot/windows/
+#mkdir -p /var/lib/tftpboot/windows/
+#cd /var/lib/tftpboot/windows/
 
