@@ -1,0 +1,12 @@
+- hosts: workers
+  become: yes
+  vars:
+    token: b0f7b8.8d1767876297d85c
+  tasks:
+    - name: join cluster
+      shell: |
+        kubeadm join --token {{ token }} \
+                --discovery-token-unsafe-skip-ca-verification \
+                192.168.1.151:6443
+
+

@@ -1,0 +1,13 @@
+[masters]
+cent1.home
+
+[workers]
+cent2.home
+cent3.home
+
+[master]
+cent1.home
+
+[worker]
+cent2.home
+cent3.home

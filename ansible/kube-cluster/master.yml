@@ -1,0 +1,28 @@
+- hosts: master
+  become: yes
+  vars:
+    token: b0f7b8.8d1767876297d85c
+  tasks:
+    - name: initialize the cluster
+      shell: |
+        kubeadm init --token {{ token }}
+      args:
+        chdir: $HOME
+        creates: cluster_initialized.txt
+
+    - name: create .kube directory
+      become: yes
+      become_user: root
+      file:
+        path: $HOME/.kube
+        state: directory
+        mode: 0755
+
+    - name: copy admin.conf to user's kube config
+      copy:
+        src: /etc/kubernetes/admin.conf
+        dest: /home/centos/.kube/config
+        remote_src: yes
+        owner: centos
+
+
