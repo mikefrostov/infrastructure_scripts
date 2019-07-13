@@ -1,0 +1,58 @@
+---
+- hosts: hypervisor
+  tasks: 
+  - name: install kvm 
+    remote_user: root
+    package: 
+      name: "{{ item }}" 
+      state: present 
+    with_items: 
+      - qemu-kvm
+      - libvirt
+      - libvirt-python
+      - libguestfs-tools
+      - virt-install 
+      - bridge-utils
+      - net-tools
+      - libvirt-devel  
+      - libxslt-devel 
+      - libxml2-devel 
+      - libguestfs-tools 
+  - name: Enable 
+    systemd: 
+      name: libvirtd
+      state: started
+      enabled: yes
+
+  - name: Copy vagrant rpm
+    copy:
+      src: https://releases.hashicorp.com/vagrant/2.2.4/vagrant_2.2.4_x86_64.rpm
+      dest: /tmp/vagrant.rpm
+
+  - name: Install vagrant 
+    yum:
+      name: /tmp/vagrant.rpm
+      state: present
+
+  - name: Vagrant settings
+    shell: |
+      vagrant plugin install vagrant-libvirt
+      echo 'export VAGRANT_HOME=/home/VMs/vagrant' >> /etc/profile
+
+  - name: Get interface name
+    shell: ownif=$(route | grep '^default' | grep -o '[^ ]*$')
+    register: interface-name
+
+  - name: Add bridge entry to interface config
+    shell:  echo "BRIDGE=br0" >> /etc/sysconfig/network-scripts/ifcfg-{{interface-name.stdout}}
+    when: interface-name|succeeded
+
+  - name: Create bridge config file
+    copy: src=ifcfg-br0
+          dest=/etc/sysconfig/network-scripts/ifcfg-br0
+
+  - name: Restart server
+    command: /sbin/shutdown -r +1
+    async: 0
+    poll: 0
+    ignore_errors: true
