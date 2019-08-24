@@ -1,0 +1,1 @@
+kubeadm join 192.168.1.170:6443 --token t5oso0.x061n2r44o24mitd     --discovery-token-ca-cert-hash sha256:250f27cb72133f1338fe2d99b4e8fec25d25a2ae08d21a86434f5899a4f953ad 
