@@ -15,7 +15,7 @@ echo ' auto lo br0
 sudo systemctl restart networking
 sudo brctl show
 cd /var/lib/libvirt/boot/
-sudo http://mirror.corbina.net/pub/Linux/centos/7.6.1810/isos/x86_64/CentOS-7-x86_64-Minimal-1810.iso
+sudo wget http://mirror.corbina.net/pub/Linux/centos/7.6.1810/isos/x86_64/CentOS-7-x86_64-Minimal-1810.iso
 sudo virt-install \
 --virt-type=kvm \
 --name centos7 \
@@ -24,7 +24,7 @@ sudo virt-install \
 --os-variant=centos7.0 \
 --virt-type=kvm \
 --hvm \
---cdrom=/var/lib/libvirt/boot/CentOS-7-x86_64-DVD-1708.iso \
+--cdrom=/var/lib/libvirt/boot/CentOS-7-x86_64-Minimal-1810.iso \
 --network=bridge=br0,model=virtio \
 --graphics vnc \
 --disk path=/var/lib/libvirt/images/centos7.qcow2,size=40,bus=virtio,format=qcow2
