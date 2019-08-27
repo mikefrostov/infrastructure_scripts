@@ -1,1 +1,2 @@
-vagrant/kubernetes/kubernetes-setup/files/join-command
+vagrant/kubernetes-libvirt/kubernetes-setup/files/join-command
+vagrant/kubernetes-libvirt/.vagrant/

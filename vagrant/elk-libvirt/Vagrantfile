@@ -1,0 +1,40 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "generic/ubuntu1604"
+  config.ssh.insert_key = false
+
+  config.vm.provider :libvirt do |v|
+    v.memory = 2048
+    v.cpus = 2
+  end
+
+  # ELK server.
+  config.vm.define "logs" do |logs|
+    logs.vm.hostname = "logs"
+    logs.vm.network "public_network", bridge: "br0", dev: "br0", type: "bridge",mode: "bridge", ip: "192.168.1.190"
+
+    logs.vm.provision :ansible do |ansible|
+      ansible.playbook = "provisioning/elk/playbook.yml"
+      ansible.inventory_path = "provisioning/elk/inventory"
+      ansible.become = true
+    end
+  end
+
+  # Web server.
+  config.vm.define "webs" do |webs|
+    webs.vm.hostname = "webs"
+    webs.vm.network "public_network", bridge: "br0", dev: "br0", type: "bridge", mode: "bridge", ip: "192.168.1.191"
+
+    webs.vm.provision :ansible do |ansible|
+      ansible.compatibility_mode = "2.0"
+      ansible.playbook = "provisioning/web/playbook.yml"
+      ansible.inventory_path = "provisioning/web/inventory"
+      ansible.become = true
+    end
+  end
+
+end
