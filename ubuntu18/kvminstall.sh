@@ -27,7 +27,7 @@ sudo virt-install \
 --hvm \
 --cdrom=/var/lib/libvirt/images/CentOS-7-x86_64-Minimal-1810.iso \
 --network=bridge=br0,model=virtio \
---graphics vnc \
+--graphics vnc, listen=0.0.0.0 --noautoconsole \
 --disk path=/var/lib/libvirt/images/centos7.qcow2,size=40,bus=virtio,format=qcow2
 
 
