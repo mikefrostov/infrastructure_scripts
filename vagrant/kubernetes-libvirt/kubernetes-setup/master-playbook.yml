@@ -101,9 +101,15 @@
      - cp -i /etc/kubernetes/admin.conf /home/vagrant/.kube/config
      - chown vagrant:vagrant /home/vagrant/.kube/config
 
+  - name: Copy the join command to server location
+    copy:
+      src: ~/infrastructure_scripts/vagrant/kubernetes-libvirt/kubernetes-setup/files/calico.yaml
+      dest: /tmp/calico.yaml
+      mode: 0777
+
   - name: Install calico pod network
     become: false
-    command: kubectl create -f https://docs.projectcalico.org/v3.4/getting-started/kubernetes/installation/hosted/calico.yaml
+    command: kubectl create -f /tmp/calico.yaml
 
 
   - name: Generate join command
