@@ -83,7 +83,7 @@ INITRD windows/Win101607PE_amd64.iso
 APPEND iso raw" >> /var/lib/tftpboot/pxelinux.cfg/default
 yum install wget -y
 cd 
-wget http://mirror.yandex.ru/centos/7.6.1810/isos/x86_64/CentOS-7-x86_64-Minimal-1810.iso
+wget http://mirror.yandex.ru/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1908.iso
 mount -o loop ./CentOS-7-x86_64-Minimal-1810.iso /mnt/
 mkdir -p /var/lib/tftpboot/centos7
 mkdir -p /var/ftp/pub/centos7/
