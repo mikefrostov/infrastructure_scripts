@@ -71,10 +71,10 @@
     command: swapoff -a
     when: ansible_swaptotal_mb > 0
 
-  - name: change docker config
-    copy:
-      src: "{{ playbook_dir }}/files/daemon.json"
-      dest: /etc/docker/daemon.json
+#  - name: change docker config              # for some reason changes to cgroups again
+#    copy:
+#      src: "{{ playbook_dir }}/files/daemon.json"
+#      dest: /etc/docker/daemon.json
 
   - name: Add an apt signing key for Kubernetes
     apt_key:
