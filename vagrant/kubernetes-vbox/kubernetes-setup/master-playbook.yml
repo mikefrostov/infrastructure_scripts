@@ -2,6 +2,10 @@
 - hosts: all
   become: true
   tasks:
+
+  - name: change default route
+    command: route add default gw 192.168.1.1 eth1
+
   - name: Install packages that allow apt to be used over HTTPS
     apt:
       name: "{{ packages }}"
@@ -121,9 +125,9 @@
 #      dest: /tmp/calico.yaml
 #      mode: 0777
 
-#  - name: Install calico pod network
-#    become: false
-#    command: kubectl create -f /tmp/calico.yaml
+  - name: Install calico pod network
+    become: false
+    command: kubectl apply -f https://docs.projectcalico.org/v3.8/manifests/calico.yaml
 
 
   - name: Generate join command
