@@ -1,1 +1,0 @@
-kubeadm join 192.168.1.170:6443 --token lf47au.1s5313qvm8k1v1pe     --discovery-token-ca-cert-hash sha256:e0a2c4730ec76826f5d82445012fca21dc8bf416f12ea2e3fa99051cd990fd8e 
