@@ -1,0 +1,15 @@
+sudo virt-install \
+--name centos6 \
+--ram 8192 \
+--disk path=./centos6.qcow2,size=8 \
+--vcpus 2 \
+--os-type linux \
+--os-variant=rhel6 \
+--network bridge=virbr0 \
+--graphics none \
+--console pty,target_type=serial \
+--location 'http://mirror.centos.org/centos/6/os/x86_64/' \
+--extra-args 'console=ttyS0,115200n8 serial' \
+--hostdev 
+--hostdev 07:00.0 \
+--hostdev 07:00.1
