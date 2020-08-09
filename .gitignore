@@ -2,3 +2,4 @@
 .vagrant/
 .vagrant/*
 join-command
+root_passwd.txt
