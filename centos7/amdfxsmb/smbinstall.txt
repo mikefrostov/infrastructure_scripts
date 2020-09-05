@@ -1,0 +1,105 @@
+yum install samba samba-client samba-common
+  158  firewall-cmd --permanent --zone=public --add-service=samba
+  159  firewall-cmd --reload
+  160  cp /etc/samba/smb.conf /etc/samba/smb.conf.orig
+  161  cat /dev/null > /etc/samba/smb.conf
+  162  vi /etc/samba/smb.conf
+  163  mkdir /mnt/2tb
+  164  mkdir /mnt/4tb
+  165  lsblk -l
+  166  poweroff
+  167  lsblk -l
+  168  mount /dev/sdb1 /mnt/2tb/
+  169  yum install ntfs-3g -y;
+  170  mount /dev/sdb1 /mnt/2tb/
+  171  lsblk -l
+  172  mount /dev/sda1 /mnt/4tb/
+  173  ls /mnt/4tb/
+  174  ls /mnt/2tb/
+  175  systemctl status smb
+  176  systemctl status nmb
+  177  vi /etc/samba/smb.conf
+  178  firewall-cmd --permanent --zone=public --add-service=samba
+  179  firewall-cmd --reload
+  180  chcon -t samba_share_t /mnt/2tb/
+  181  chcon -t samba_share_t /mnt/4tb/
+  182  chmod -R 0755 /mnt/4tb/
+  183  chown -R nobody:nobody /mnt/4tb/
+  184  systemctl enable smb.service
+  185  systemctl enable nmb.service
+  186  systemctl restart smb.service
+  187  systemctl restart nmb.service
+  188  poweroff
+  189  ls /mnt/4tb/
+  190  reboot
+  191  mount /dev/sda1 /mnt/4tb/
+  192  chcon -t samba_share_t /mnt/2tb/
+  193  lsblk -l
+  194  mount /dev/sdb1 /mount/2tb
+  195  mount /dev/sdb1 /mnt/2tb
+  196  chcon -t samba_share_t /mnt/2tb/
+  197  chcon -t samba_share_t /mnt/2tb
+  198  chcon -t samba_share_t /mnt/4tb
+  199  chown -R nobody:nobody /mnt/2tb
+  200  chmod -R 777 /mnt/2tb
+  201  systemctl restart smb
+  202  systemctl restart nmb
+  203  ls /mnt/2tb/
+  204  cat /etc/samba/smb.conf
+  205  chcon -t samba_share_t /mnt/2tb
+  206  vi /etc/fstab
+  207  chcon -t samba_share_t /mnt/2tb
+  208  reboot
+  209  ls /mnt/2tb/
+  210  ls /mnt/4tb/
+  211  clear
+  212  chcon -t samba_share_t /mnt/2tb
+  213  chcon -R -t samba_share_t /mnt/2tb
+  214  selinux
+  215  sestatus
+  216  selinux permissive
+  217  selinuxenabled
+  218  sestatus
+  219  getenforce
+  220  setenforce 0
+  221  getenforce
+  222  reboot
+  223  getenforce
+  224  vi /etc/selinux/config
+  225  reboot
+  226  yum install vsftpd -y
+  227  systemctl enable vsftpd
+  228  firewall-cmd --zone=public --permanent --add-port=21/tcp
+  229  firewall-cmd --zone=public --permanent --add-service=ftp
+  230  firewall-cmd –-reload
+  231  firewall--cmd --reload
+  232  firewall-cmd --reload
+  233  sudo cp /etc/vsftpd/vsftpd.conf /etc/vsftpd/vsftpd.conf.default
+  234  vi /etc/vsftpd/vsftpd.conf
+  235  systemctl restart vsftpd
+  236  systemctl status vsftpd
+  237  mkdir -p /var/ftp/pub
+  238  chown nobody:nogroup /var/ftp/pub
+  239  chown nobody:nobody /var/ftp/pub
+  240  echo "vsftpd test file" | sudo tee /var/ftp/pub/test.txt
+  241  ls /var/ftp/pub/
+  242  vi /etc/vsftpd.conf
+  243  vi /etc/vsftpd/vsftpd.conf
+  244  systemctl status vsftpd
+  245  systemctl restart vsftpd
+  246  systemctl status vsftpd
+  247  clear
+  248  ls
+  249  mount --bind /mnt/2tb/share/biblioteka/mylib/computer\ science/devops/virtual.cloud/Microsoft/ /var/ftp/pub/
+  250  ls /var/ftp/pub/
+  251  mount
+  252  umount /var/ftp/pub/
+  253  systemctl status vsftpd
+  254  systemctl stop vsftpd
+  255  systemctl status vsftpd
+  256  umount /var/ftp/pub/
+  257  systemctl start vsftpd
+  258  poweroff
+  259  ls /mnt/2tb/
+  260  ls /mnt/4tb/
+  261  getenforce
