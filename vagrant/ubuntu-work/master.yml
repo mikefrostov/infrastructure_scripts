@@ -34,3 +34,20 @@
         dest: /home/vagrant/koa_app/
         version: master
 
+    - name: Ensure old versions of Docker are not installed.
+      package:
+        name:
+          - docker
+          - docker-engine
+        state: absent
+
+    - name: Ensure dependencies are installed.
+      apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - gnupg2
+        state: present
+
+    - name: Update apt and install docker.io
+      apt: update_cache=yes name=docker.io state=latest
