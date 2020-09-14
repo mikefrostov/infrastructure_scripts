@@ -27,3 +27,10 @@
       apt:
         name: nodejs
         state: present
+
+    - name: Clone bitbucket repo
+      git:
+        repo: https://github.com/mikefrostov/koa_app.git
+        dest: /home/vagrant/koa_app/
+        version: master
+
