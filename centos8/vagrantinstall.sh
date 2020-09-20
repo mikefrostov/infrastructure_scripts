@@ -9,7 +9,6 @@ CONFIGURE_ARGS="with-libvirt-include=/usr/include/libvirt with-libvirt-lib=/usr/
 echo 'export VAGRANT_HOME=/home/VMs/vagrant' >> /etc/profile
 #dnf install python3 -y
 #dnf install python3-pip -y
-subscription-manager repos --enable ansible-2.8-for-rhel-8-x86_64-rpms
 dnf -y install ansible
 #pip3 install ansible 
 ansible --version
