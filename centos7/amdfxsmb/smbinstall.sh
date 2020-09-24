@@ -16,8 +16,9 @@ lsblk -l
 mount /dev/sda1 /mnt/4tb/
 mount /dev/sde1 /mnt/2tb/
 mount /dev/sdd2 /mnt/4tb2/
-systemctl status smb
-systemctl status nmb
+setenforce 0
+sed -i -e 's/enforcing/permissive/g' /etc/selinux/config
+cat /etc/selinux/config | grep permissive
 chcon -t samba_share_t /mnt/2tb/
 chmod -R 0755 /mnt/2tb/
 chown -R nobody:nobody /mnt/2tb/
@@ -35,10 +36,6 @@ systemctl restart nmb.service
 # echo '/dev/sda1 /mnt/2tb default 0 0 0 >> /etc/fstab
 #chcon -R -t samba_share_t /mnt/2tb # -t??
 
-sestatus
-setenforce 0
-sed -i -e 's/enforcing/permissive/g' /etc/selinux/config
-reboot
 yum install vsftpd -y
 systemctl enable vsftpd
 firewall-cmd --zone=public --permanent --add-port=21/tcp
@@ -61,3 +58,4 @@ systemctl restart vsftpd
 systemctl status vsftpd
 #mount --bind /mnt/2tb/share/biblioteka/mylib/computer\ science/devops/virtual.cloud/Microsoft/ /var/ftp/pub/
 #umount /var/ftp/pub/
+reboot
