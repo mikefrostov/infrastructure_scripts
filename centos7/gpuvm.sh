@@ -1,7 +1,7 @@
 sudo virt-install \
 --name ubu18gpu \
 --ram 8192 \
---disk path=/home/ubu18.qcow2,size=8 \
+--disk path=/home/ubu18.qcow2,size=20 \
 --vcpus 2 \
 --os-type linux \
 --os-variant=ubuntu18.04 \
