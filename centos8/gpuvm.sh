@@ -1,4 +1,3 @@
-lspci -nn | grep -i nvidia
 
 virt-install \
 --name centos8 \
