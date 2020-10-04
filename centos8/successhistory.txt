@@ -1,0 +1,495 @@
+    1  yum install epel-release wget curl git -y
+    2  ls
+    3  git clone https://github.com/pavolelsig/passthrough_helper_centos.git
+    4  ls
+    5  git clone https://github.com/mikefrostov/infrastructure_scripts.git
+    6  cd infrastructure_scripts/
+    7  ls
+    8  cd centos8/
+    9  ls
+   10  ./kvm.sh 
+   11  systemctl status NetworkManager
+   12  ip a l
+   13  if up enp2s0
+   14  ifup enp2s0
+   15  ip a l
+   16  vi /etc/sysconfig/network-scripts/ifcfg-enp2s0 
+   17  ip a l
+   18  ls
+   19  ls passthrough_helper_centos/
+   20  chmod +x passthrough_helper_centos/gpu_passthrough.sh 
+   21  ./passthrough_helper_centos/gpu_passthrough.sh 
+   22  ls
+   23  cd passthrough_helper_centos/
+   24  ;s
+   25  ls
+   26  ./gpu_passthrough.sh 
+   27  lspci
+   28  lspci -nk
+   29  reboot
+   30  ifup enp2s0
+   31  lspci -nk
+   32  lspci -kk
+   33  lspci -n
+   34  lspci -k
+   35  lspci -v
+   36  ls
+   37  cat infrastructure_scripts/centos8/ids 
+   38  vi /etc/sysconfig/grub 
+   39  grub2-mkconfig -o /etc/grub2-efi.cfg
+   40  reboot
+   41  lspci -nnk
+   42  ls
+   43  ./infrastructure_scripts/centos8/gpuvm.sh 
+   44  mkidr -p /var/kvm/images
+   45  mkdir -p /var/kvm/images
+   46  ./infrastructure_scripts/centos8/gpuvm.sh 
+   47  virsh list --all
+   48  virsh destroy centos8
+   49  virsh undefine centos8
+   50  ls
+   51  vi infrastructure_scripts/centos8/gpuvm.sh 
+   52  ./infrastructure_scripts/centos8/gpuvm.sh 
+   53  virsh list --al
+   54  virsh list --all
+   55  virsh undefine centos8
+   56  virsh undefine centos8 --nvram
+   57  ./infrastructure_scripts/centos8/gpuvm.sh 
+   58  vi infrastructure_scripts/centos8/gpuvm.sh 
+   59  vi infrastructure_scripts/centos7/gpuvm.sh 
+   60  virsh list --all
+   61  chmod +x infrastructure_scripts/centos7/gpuvm.sh 
+   62  ./infrastructure_scripts/centos7/gpuvm.sh 
+   63  reboot
+   64  lspci -nnk
+   65  vi /etc/modprobe.d
+   66  vi /etc/modprobe.d/vhost.conf 
+   67  vi /etc/modprobe.d/tuned.conf 
+   68  vi /etc/modprobe.d/lockd.conf 
+   69  vi /etc/modprobe.d/kvm.conf 
+   70  vi /etc/modprobe.d/local.conf 
+   71  ls
+   72  vi passthrough_helper_centos/gpu_passthrough.sh 
+   73  vi /etc/sysconfig/grub
+   74  cat infrastructure_scripts/centos8/ids 
+   75  vi /etc/sysconfig/grub
+   76  vi passthrough_helper_centos/gpu_passthrough.sh 
+   77  grub2-mkconfig -o /etc/grub2-efi.cfg
+   78  reboot
+   79  lspci --nnk
+   80  lspci --nn
+   81  lspci -nnk
+   82  lspci 
+   83  lspci -k
+   84  vi passthrough_helper_centos/gpu_passthrough.sh 
+   85  vi /etc/sysconfig/grub
+   86  grub2-mkconfig -o /etc/grub2-efi.cfg
+   87  reboot
+   88  lspci -k
+   89  vi /etc/sysconfig/grub
+   90  grub2-mkconfig -o /etc/grub2-efi.cfg
+   91  reboot
+   92  lspci -k
+   93  vi passthrough_helper_centos/gpu_passthrough.sh 
+   94  vi /etc/dracut.conf.d/local.conf
+   95  vi /sbin/vfio-pci-override-vga.sh
+   96  ls /sys/devices/pci0000\:00/0000\:00\:07.0/
+   97  ls /sys/devices/pci0000\:00/0000\:00\:07.0/config 
+   98  vi /sys/devices/pci0000\:00/0000\:00\:07.0/config 
+   99  lspci -nK
+  100  lspci -nk
+  101  lspci -n -s 07:00.
+  102  lspci -n -s 07:00.0
+  103  ls /sys/bus/pci/devices/
+  104  ls /sys/bus/pci/devices/0000\:00\:07.0/driver/
+  105  ls /sys/bus/pci/devices/0000\:00\:07.0/driver/unbind 
+  106  vi /sys/bus/pci/devices/0000\:00\:07.0/driver/unbind 
+  107  echo 0000:07:00.0 > /sys/bus/pci/devices/0000\:00\:07.0/driver/unbind 
+  108  ls /sys/bus/pci/drivers/vfio-pci
+  109  poweroff
+  110  ls
+  111  ls infrastructure_scripts/
+  112  ls infrastructure_scripts/centos7/
+  113  vi infrastructure_scripts/centos7/smb.sh 
+  114  vi infrastructure_scripts/centos7/amdfxsmb/smb.conf 
+  115  vi infrastructure_scripts/centos7/amdfxsmb/smbinstall.txt 
+  116  git status
+  117  cd infrastructure_scripts/
+  118  git status
+  119  git add centos7/amdfxsmb/
+  120  git status
+  121  git commit
+  122  git config --global --edit
+  123  git push
+  124  git status
+  125  vi centos7/gpuvm.sh 
+  126  clear
+  127  ls
+  128  git add .
+  129  git commit
+  130  git push
+  131  ls
+  132  vi centos7/amdfxsmb/smbinstall.txt 
+  133  lsblk -l
+  134  poweroff
+  135  lsblk -l
+  136  ls /mnt/
+  137  mount /dev/sde1 /mnt/2tb
+  138  mount /dev/sdd2 /mnt/4tb2
+  139  mount /dev/sda1 /mnt/4tb2
+  140  mount /dev/sdd2 /mnt/4tb2
+  141  umount /mnt/4tb2
+  142  mount /dev/sdd2 /mnt/4tb2
+  143  lsblk -l
+  144  umount /dev/sdd2
+  145  mount /dev/sdd2 /mnt/4tb
+  146  mount /dev/sda1 /mnt/4tb2
+  147  ls /mnt/
+  148  ls /mnt/4tb/
+  149  ls /mnt/4tb2/
+  150  umount /dev/sda1
+  151  umount /dev/sdd2
+  152  mount /dev/sdd2 /mnt/4tb2
+  153  mount /dev/sda1 /mnt/4tb
+  154  lsblk -l
+  155  vi /etc/fstab 
+  156  ls infrastructure_scripts/centos7/
+  157  vi infrastructure_scripts/centos7/amdfxsmb/smbinstall.txt 
+  158  vi /etc/fstab 
+  159  vi infrastructure_scripts/centos7/amdfxsmb/smbinstall.txt 
+  160  vi /etc/selinux/config
+  161  vi infrastructure_scripts/centos7/amdfxsmb/smbinstall.txt 
+  162  ls /mnt
+  163  ls /mnt/2tb/
+  164  ls /mnt/4tb
+  165  ls /mnt/4tb2/
+  166  umount /mnt/4tb2 
+  167  umount /mnt/4tb
+  168  umount /mnt/2tb 
+  169  mv infrastructure_scripts/centos7/amdfxsmb/smbinstall.txt infrastructure_scripts/centos7/amdfxsmb/smbinstall.sh
+  170  chmod +x infrastructure_scripts/centos7/amdfxsmb/smbinstall.sh
+  171  infrastructure_scripts/centos7/amdfxsmb/smbinstall.sh
+  172  vi infrastructure_scripts/centos7/amdfxsmb/smbinstall.sh
+  173  ls /etc/samba/
+  174  ls /etc/samba/smb.conf
+  175  vi infrastructure_scripts/centos7/amdfxsmb/smbinstall.sh
+  176  ls
+  177  cd infrastructure_scripts/centos7/amdfxsmb/
+  178  ls
+  179  ./smbinstall.sh 
+  180  ls /mnt/2tb/
+  181  rm -rf /mnt/*
+  182  ls /mnt/
+  183  ./smbinstall.sh 
+  184  ls /mnt/
+  185  ls /mnt/4tb2/
+  186  ls /mnt/2tb/
+  187  ls /mnt/4tb
+  188  git status
+  189  git add .
+  190  git commit
+  191  git push
+  192  vi smbinstall.sh 
+  193  umount /mnt/2tb 
+  194  umount /mnt/4tb
+  195  umount /mnt/4tb2 
+  196  ls /mnt/4tb2 
+  197  rm -rf /mnt/*
+  198  ls /mnt/
+  199  ls
+  200  ./smbinstall.sh 
+  201  vi smbinstall.sh 
+  202  ls /mnt/4tb
+  203  ls /mnt/4tb2/
+  204  ls /mnt/2tb/
+  205  git add .
+  206  git commit
+  207  git push
+  208  vi smbinstall.sh 
+  209  ls /mnt/
+  210  umount /mnt/2tb 
+  211  umount /mnt/4tb
+  212  umount /mnt/4tb2 
+  213  ls /mnt/
+  214  rm -r /mnt/*
+  215  ./smbinstall.sh 
+  216  vi smbinstall.sh 
+  217  ls /mnt/
+  218  umount /mnt/2tb 
+  219  umount /mnt/4tb
+  220  umount /mnt/4tb2 
+  221  ./smbinstall.sh 
+  222  ls /mnt/
+  223  rm -rf /mnt/*
+  224  ./smbinstall.sh 
+  225  selinux
+  226  sestatus
+  227  git status
+  228  git add .
+  229  vi smbinstall.sh 
+  230  git add .
+  231  git commit
+  232  git push
+  233  poweroff
+  234  lsblk -l
+  235  mount /dev/sda1 /mnt/4tb
+  236  ls /mnt/4tb
+  237  systemctl restart nmb
+  238  systemctl restart smb
+  239  vi /etc/samba/smb.conf
+  240  ls infrastructure_scripts/
+  241  ls infrastructure_scripts/centos7/
+  242  ls infrastructure_scripts/centos7/amdfxsmb/
+  243  ls infrastructure_scripts/cmds/
+  244  vi infrastructure_scripts/cmds/ntfsmount.sh 
+  245  lsblk -l
+  246  mount /dev/sdd2 /mnt/4tb2
+  247  mount /dev/sdf1 /mnt/2tb
+  248  ls /mnt/2tb/
+  249  ls /mnt/4tb2/
+  250  lsblk -l
+  251  vi /etc/fstab 
+  252  cp /etc/fstab infrastructure_scripts/centos8/
+  253  reboot
+  254  vi /etc/fstab 
+  255  lsblk -l
+  256  vi /etc/fstab 
+  257  reboot
+  258  ls
+  259  lsblk -l
+  260  cd infrastructure_scripts/
+  261  ls
+  262  git status
+  263  cp /etc/fstab centos8/
+  264  git status
+  265  git commit
+  266  git add .
+  267  git commit
+  268  poweroff
+  269  ls
+  270  cd infrastructure_scripts/vagrant/ubuntu-work/
+  271  ls
+  272  vagrant up master
+  273  cd ..
+  274  ls
+  275  cd centos8/
+  276  ls
+  277  ./kvm.sh 
+  278  cd infrastructure_scripts/
+  279  ls
+  280  cd centos8/
+  281  ./vagrantinstall.sh 
+  282  cd ..
+  283  cd vagrant/ubuntu-work/
+  284  vagrant up master
+  285  ls
+  286  vagrant ssh master
+  287  poweroff
+  288  journalctl -xb
+  289  lsblk -l
+  290  vi /etc/fstab 
+  291  lsblk -l
+  292  vi /etc/fstab 
+  293  lsblk -l
+  294  vi /etc/fstab 
+  295  lsblk -l
+  296  vi /etc/fstab 
+  297  lsblk -l
+  298  reboot
+  299  poweroff
+  300  clear
+  301  top
+  302  htop
+  303  clear
+  304  top
+  305  Q
+  306  poweroff
+  307  clear
+  308  virsh list --all
+  309  virsh destroy ubu18gpu
+  310  virsh undefine ubu18gpu
+  311  cp infrastructure_scripts/centos7/gpuvm.sh ./
+  312  ls /mnt/4tb/OS/
+  313  cp /mnt/4tb/OS/Win10.x86-x64.Rus-Eng.36in1.KMS.DVD9/ru-en_windows_10_1809-Jan_x86-x64_36in1_KMS.iso /home/win10.iso
+  314  cd /home/
+  315  ls
+  316  wget https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/virtio-win-0.1.141-1/virtio-win.iso
+  317  ls
+  318  cd
+  319  lsblk -nk
+  320  lspci -nk
+  321  lspci -k
+  322  ls
+  323  ./gpuvfio.sh 
+  324  lspci -k
+  325  ls
+  326  vi gpuvm.sh 
+  327  ./gpuvm.sh 
+  328  ls
+  329  vi gpuvm.sh 
+  330  virsh list --all
+  331  vi gpuvm.sh 
+  332  ls
+  333  vi gpuvm.sh 
+  334  ./gpuvm.sh 
+  335  vi gpuvm.sh 
+  336  ./gpuvm.sh 
+  337  virsh osinfo-query os
+  338  virt-install osinfo
+  339  virt-install osinfo-query
+  340  virt-install osinfo-query win10
+  341  osinfo-query
+  342  osinfo-query win10
+  343  osinfo-query win8.1
+  344  osinfo-query Win8.1
+  345  osinfo-query windows8.1
+  346  osinfo-query windows10
+  347  osinfo-query windows
+  348  osinfo-query ubuntu18.04
+  349  osinfo-query win10
+  350  vi gpuvm.sh 
+  351  ./gpuvm.sh 
+  352  virsh destroy win10
+  353  virsh list --all
+  354  virsh destroy wingpu
+  355  virsh undefine wingpu
+  356  rm -f /home/wingpu.qcow2 
+  357  vi gpuvm.sh 
+  358  ./gpuvm.sh 
+  359  virsh destroy win10
+  360  virsh destroy win
+  361  virsh undefine win
+  362  vi gpuvm.sh 
+  363  ./gpuvm.sh 
+  364  vi gpuvm.sh 
+  365  ./gpuvm.sh 
+  366  virsh list --all
+  367  vi gpuvm.sh 
+  368  virsh list --all
+  369  virsh start win
+  370  vi gpuvm.sh 
+  371  virsh edit win
+  372  ls /home/virtio-win.iso 
+  373  virsh start win
+  374  virsh undefine win
+  375  rm -f /home/wingpu.qcow2 
+  376  vi gpuvm.sh 
+  377  ls /home/virtio-win.iso 
+  378  ./gpuvm.sh 
+  379  virsh destroy win
+  380  virsh undefine win
+  381  vi gpuvm.sh 
+  382  ./gpuvm.sh 
+  383  ls /home/
+  384  vi gpuvm.sh 
+  385  cp gpuvm.sh infrastructure_scripts/centos8/wingpu.sh
+  386  cd infrastructure_scripts/
+  387  git status
+  388  git add .
+  389  git commit
+  390  git push
+  391  virsh list 
+  392  virsh list --all
+  393  cp /home/win10.iso /home/win10.iso.bkp
+  394  rm -f /home/win10.iso.bkp 
+  395  cp /home/wingpu.qcow2 /home/wingpu.qcow2.bkp
+  396  virsh start win
+  397  cp /home/wingpu.qcow2 /home/wingpu.qcow2.bkp
+  398  y
+  399  virsh start win
+  400  htop
+  401  ls /home/
+  402  cp /home/wingpu.qcow2 /home/wingpu.qcow2.gpuworks
+  403  lsblk -l
+  404  df -h
+  405  ls /hom/
+  406  ls /home/
+  407  rm -f /home/wingpu.qcow2.gpuworks
+  408  cp /home/wingpu.qcow2 /mnt/4tb2/wingpu.qcow2.gpuworks
+  409  mv /home/wingpu.qcow2.bkp /mnt/4tb2/
+  410  ls
+  411  lsusb
+  412  ls -l /dev/bus/usb/003
+  413  ls -l /dev/bus/usb/004
+  414  lsusb -v
+  415  lsusb
+  416  clear
+  417  lsusb -v >> lsusb.txt
+  418  ls
+  419  vi lsusb.txt 
+  420  touch usb.xml
+  421  vi usb.xml 
+  422  vi lsusb.txt 
+  423  vi usb.xml 
+  424  vi lsusb.txt 
+  425  vi usb.xml 
+  426  virsh attach-device win --file usb.xml --config --persistent
+  427  vi usb.xml 
+  428  virsh attach-device win --file usb.xml --config --persistent
+  429  vi usb.xml 
+  430  virsh attach-device win --file usb.xml --config --persistent
+  431  vi usb.xml 
+  432  cp usb.xml usb2.xml
+  433  vi usb.xml 
+  434  vi usb2.xml 
+  435  virsh attach-device win --file usb.xml --config --persistent
+  436  virsh attach-device win --file usb2.xml --config --persistent
+  437  virsh list --all
+  438  virsh start win
+  439  virshdumpxml
+  440  virsh dumpxml
+  441  virsh dumpxml win >> win.vm
+  442  vi win.vm 
+  443  cp win.vm centos8/
+  444  ls
+  445  mv usb.xml centos8/
+  446  mv usb2.xml centos8/
+  447  git status
+  448  rm win.vm 
+  449  rm lsusb.txt 
+  450  git status
+  451  git add .
+  452  ls centos8/
+  453  git add .
+  454  git commit
+  455  git push
+  456  virsh list --all
+  457  virsh destroy win
+  458  virsh edit win 
+  459  virsh start win
+  460  virsh edit win
+  461  virsh undefine win
+  462  virsh create centos8/win.vm 
+  463  virsh list --all
+  464  virsh list 
+  465  virsh list --all
+  466  virsh create centos8/win.vm 
+  467  virsh list --all
+  468  virsh list
+  469  virt-xml
+  470  virt-xml --help
+  471  virt-xml win --remove-device vnc
+  472  virt-xml win --remove-device list
+  473  virt-xml win --remove-device --graphics vnc
+  474  virsh list
+  475  virsh list --all
+  476  virsh start win
+  477  virsh destroy win
+  478  virsh edit win
+  479  ls /home/
+  480  rm -f /home/wingpu.qcow2 
+  481  cd ..
+  482  ls
+  483  vi gpuvm.sh 
+  484  virsh undefine win
+  485  ./gpuvm.sh 
+  486  clear
+  487  ls
+  488  ls passthrough_helper_centos/
+  489  vi passthrough_helper_centos/gpu_passthrough.sh 
+  490  cp passthrough_helper_centos/gpu_passthrough.sh infrastructure_scripts/centos8/
+  491  vi passthrough_helper_centos/vfio-pci-override-vga.sh 
+  492  vi passthrough_helper_centos/local.conf 
+  493  cp passthrough_helper_centos/local.conf infrastructure_scripts/centos8/
+  494  history
+  495  history >> history.txt
