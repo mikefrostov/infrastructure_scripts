@@ -51,3 +51,17 @@
 
     - name: Update apt and install docker.io
       apt: update_cache=yes name=docker.io state=latest
+
+    - name: Make etckeeper not complaining when it is invoked by cron
+      community.general.git_config:
+        name: user.email
+        repo: ~/koa_app
+        scope: local
+        value: 'm.e.morozov1@gmail.com'
+
+    - name: Make etckeeper not complaining when it is invoked by cron
+      community.general.git_config:
+        name: user.name
+        repo: ~/koa_app
+        scope: local
+        value: 'mikefrostov'
