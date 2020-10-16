@@ -32,6 +32,12 @@
       git:
         repo: https://github.com/mikefrostov/koa_app.git
         dest: /home/vagrant/koa_app/
+        version: misc/ubuvm
+
+    - name: Clone bitbucket repo
+      git:
+        repo: https://github.com/mikefrostov/rust_programming.git
+        dest: /home/vagrant/rust_programming/
         version: master
 
     - name: Ensure old versions of Docker are not installed.
