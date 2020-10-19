@@ -40,6 +40,12 @@
         dest: /home/vagrant/rust_programming/
         version: master
 
+    - name: Clone bitbucket repo
+      git:
+        repo: https://github.com/mikefrostov/linux_programming.git
+        dest: /home/vagrant/linux_programming/
+        version: master
+
     - name: Ensure old versions of Docker are not installed.
       package:
         name:
@@ -58,14 +64,14 @@
     - name: Update apt and install docker.io
       apt: update_cache=yes name=docker.io state=latest
 
-    - name: Make etckeeper not complaining when it is invoked by cron
+    - name: add git creds
       community.general.git_config:
         name: user.email
         repo: ~/koa_app
         scope: local
         value: 'm.e.morozov1@gmail.com'
 
-    - name: Make etckeeper not complaining when it is invoked by cron
+    - name: add git creds
       community.general.git_config:
         name: user.name
         repo: ~/koa_app
