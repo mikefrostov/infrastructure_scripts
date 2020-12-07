@@ -23,4 +23,8 @@ spin up hadoop cluster for big data
 
 learn to run machine learning tasks in k8s cluster
 
+write structured ansible playbooks 
+
+write idempotent chef/saltstack/puppet scripts
+
 
