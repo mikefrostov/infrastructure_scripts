@@ -64,16 +64,16 @@
     - name: Update apt and install docker.io
       apt: update_cache=yes name=docker.io state=latest
 
-    - name: add git creds
-      community.general.git_config:
-        name: user.email
-        repo: ~/koa_app
-        scope: local
-        value: 'm.e.morozov1@gmail.com'
+#    - name: Add git creds.
+#      community.general.git_config:
+#        name: user.email
+#        repo: ~/koa_app
+#        scope: local
+#        value: 'm.e.morozov1@gmail.com'
 
-    - name: add git creds
-      community.general.git_config:
-        name: user.name
-        repo: ~/koa_app
-        scope: local
-        value: 'mikefrostov'
+#    - name: Add git creds.
+#      community.general.git_config:
+#        name: user.name
+#        repo: ~/koa_app
+#        scope: local
+#        value: 'mikefrostov'
