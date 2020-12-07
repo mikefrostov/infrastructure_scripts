@@ -1,0 +1,26 @@
+spin up k8s cluster
+|--deploy k8s cluster to VMs
+
+deploy app with a helm chart
+|--deploy local docker registry
+|--push app image to local docker registry
+|--setup k8s cluster to use local docker registry
+|--install helm, tiller
+|--write helm chart for the app in local docker registry
+|--deploy the app to k8s cluster using helm and local docker registry
+|--test the app 
+|--deploy jenkins 
+|--setup jenkins to be able to deploy apps to k8s cluster
+|--create jenkins pipeline using groovy to deploy apps to k8s cluster
+|--write autotests that test app
+|--embed autotests to jenkins pipeline
+
+deploy 2nd app (ruby on rails) with a helm chart
+
+create microservices architecture that is scallable and relocatable for To-do list app
+
+spin up hadoop cluster for big data
+
+learn to run machine learning tasks in k8s cluster
+
+
