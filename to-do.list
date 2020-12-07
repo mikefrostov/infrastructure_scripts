@@ -27,4 +27,4 @@ write structured ansible playbooks
 
 write idempotent chef/saltstack/puppet scripts
 
-
+deploy k3s to android/arm devices
