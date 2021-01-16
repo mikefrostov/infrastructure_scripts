@@ -1,0 +1,3 @@
+#not sure this does something on windows 
+gem 'knife-solo'
+gem 'librarian-chef'
