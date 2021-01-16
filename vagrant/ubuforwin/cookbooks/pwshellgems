@@ -9,7 +9,11 @@ knife solo init .
 # C:\opscode\chef-workstation\bin\ruby.exe
 librarian-chef init
 
+#add stuff to Cheffile
+librarian-chef install
 
+#prepare nodes
+knife solo prepare vagrant@192.168.1.170
 
 
 
