@@ -4,3 +4,18 @@ chef install knife-solo
 chef gem install knife-solo
 chef gem install librarian-chef
 knife solo init .
+
+# for this need to add to path:
+# C:\opscode\chef-workstation\bin\ruby.exe
+librarian-chef init
+
+
+
+
+
+
+
+
+
+# path to binaries:
+#  c:\users\ktkt\appdata\local\chefdk\gem\ruby\2.7.0\bin
