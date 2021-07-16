@@ -1,0 +1,17 @@
+<pool type='dir'>
+  <name>default</name>
+  <uuid>0ec0e393-28a2-e975-feec-0c7356f38d08</uuid>
+  <capacity unit='bytes'>975762788352</capacity>
+  <allocation unit='bytes'>530052247552</allocation>
+  <available unit='bytes'>445710540800</available>
+  <source>
+  </source>
+  <target>
+    <path>/mnt/4tb2/images</path>
+    <permissions>
+      <mode>0711</mode>
+      <owner>-1</owner>
+      <group>-1</group>
+    </permissions>
+  </target>
+</pool>
