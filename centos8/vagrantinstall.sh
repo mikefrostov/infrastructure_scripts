@@ -26,7 +26,20 @@ cd krb5-1.17/src
 #ln -s /opt/vagrant/embedded/include/ruby-3.0.0/ruby/st.h /opt/vagrant/embedded/include/ruby-3.0.0/st.h
 #cp lib/libk5crypto.so.3 /usr/lib64/
 
+dnf download --source libssh
+rpm2cpio libssh-0.9.4-2.el8.src.rpm | cpio -imdV
+tar xf libssh-0.9.4.tar.xz
+mkdir build
+cd build
+cmake ../libssh-0.9.4 -DOPENSSL_ROOT_DIR=/opt/vagrant/embedded/
+make
+cp lib/libssh* /opt/vagrant/embedded/lib64
+
+
+
 #CFLAGS="-I/opt/vagrant/embedded/include/ruby-3.0.0/ruby" CONFIGURE_ARGS="with-libvirt-include=/usr/include/libvirt with-libvirt-lib=/usr/lib64" vagrant plugin install vagrant-libvirt
+
+vagrant plugin install vagrant-libvirt
 
 echo 'export VAGRANT_HOME=/mnt/4tb2/images' >> /etc/profile
 dnf install python3 -y
