@@ -5,6 +5,7 @@ yum install virt-install virt-viewer libguestfs-tools
 systemctl enable libvirtd.service
 systemctl start libvirtd.service
 lsmod | grep -i kvm
+yum install net-tools -y
 ownif=$(route | grep '^default' | grep -o '[^ ]*$')
 ## need to implement check that brX already exists and add br(X+1)
 echo "BRIDGE=br0" >> /etc/sysconfig/network-scripts/ifcfg-$ownif
