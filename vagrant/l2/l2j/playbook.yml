@@ -111,14 +111,26 @@
       - libmysqlclient-dev
       - python-mysqldb
 
+  - name: mysql secure installation
+    command: "mysql_secure_installation"
+    become: true
+
   - name: Start the MySQL service
     action: service name=mysql state=started
+
+  - name: Update mysql root password for all root accounts
+    mysql_user: name=root host={{item}} password="1q2w3e"
+    with_items:
+      - 127.0.0.1
+      - ::1
+      - localhost
+
 
   - name: Create a new database with name 'l2_login'
     community.mysql.mysql_db:
       name: l2_login
       login_user: root
-      login_password: ''
+      login_password: '1q2w3e'
       login_unix_socket: /var/run/mysqld/mysqld.sock
       state: present
 
@@ -126,7 +138,7 @@
     community.mysql.mysql_db:
       name: l2_game
       login_user: root
-      login_password: ''
+      login_password: '1q2w3e'
       login_unix_socket: /var/run/mysqld/mysqld.sock
       state: present
 
@@ -154,7 +166,7 @@
 #    mysql_db: name=test state=absent
 
 #  - name: Create deploy user for mysql
-#    mysql_user: user="deploy" host="%" password="" priv=*.*:ALL,GRANT
+#    mysql_user: user="deploy" host="%" password="1q2w3e" priv=*.*:ALL,GRANT
 
 #  - name: Ensure anonymous users are not in the database
 #    mysql_user: user='' host=$item state=absent
@@ -163,15 +175,17 @@
 #      - ::1
 #      - localhost
 
-#  - name: Update mysql root password for all root accounts
-#    mysql_user: name=root host={{item}} password=""
-#    with_items:
-#      - 127.0.0.1
-#      - ::1
-#      - localhost
+# change line with root password in login server config for mysql 
 
-#  - name: change default route
-#    command: chmod +x 
+
+#  - name: add +x to *.sh
+#    command: chmod +x Lineage2/login/*.sh
+#    become: yes 
+
+#  - name: run login server
+#    command: ./Lineage2/login/start.sh
+#    become: yes
+
 
   handlers:
   - name: docker status
