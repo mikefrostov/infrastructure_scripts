@@ -14,5 +14,5 @@ UUID=ed8858c6-6727-487b-9980-f68e84d7f66d /boot                   ext4    defaul
 UUID=A73A-2B22          /boot/efi               vfat              umask=0077,shortname=winnt 0 2
 /dev/mapper/cl-swap     swap                    swap              defaults        0 0
 /dev/sda1               /mnt/4tb                ntfs-3g           defaults 0 1
-/dev/sdd2               /mnt/4tb2               ntfs-3g           defaults 0 1
-/dev/sde1               /mnt/2tb                ntfs-3g           defaults 0 1
+/dev/sdc2               /mnt/4tb2               ntfs-3g           defaults 0 1
+/dev/sdd1               /mnt/2tb                ntfs-3g           defaults 0 1
